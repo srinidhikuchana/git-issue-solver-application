@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: openfix-ai-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_MODEL
+        value: qwen/qwen2.5-vl-32b-instruct:free
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
